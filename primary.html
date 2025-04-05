@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Primary Properties | NEWMARK</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Using Google Fonts for a modern look -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <img src="images/Logo.png" alt="NEWMARK" class="logo-img">
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="primary.html">Primary</a></li>
+          <li><a href="resale.html">Resale</a></li>
+          <li><a href="rent.html">Rent</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" style="background: url('images/New Mark-Brand Direction (2)_page-0007.jpg') no-repeat center center/cover;">
+    <div class="hero-content">
+      <div class="investment-text">PRIMARY LIVING</div>
+      <div class="brand-statement">
+        <p>EXTRAORDINARY PROPERTIES FOR DISCERNING CLIENTS</p>
+        <p>DISCOVER UNPARALLELED LUXURY AND EXCLUSIVITY</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Primary Filters Section -->
+  <section class="search-section">
+    <div class="container">
+      <h2>Find Your Primary Property</h2>
+      <div class="search-container">
+        <form class="advanced-search-form">
+          <div class="search-row">
+            <div class="search-group">
+              <label>Location</label>
+              <select name="location">
+                <option value="">Select Location</option>
+                <option value="downtown">Downtown</option>
+                <option value="beachfront">Beachfront</option>
+                <option value="suburban">Suburban Luxury</option>
+                <option value="gated">Gated Communities</option>
+              </select>
+            </div>
+            <div class="search-group">
+              <label>Property Type</label>
+              <select name="propertyType">
+                <option value="">All Types</option>
+                <option value="penthouse">Penthouse</option>
+                <option value="villa">Luxury Villa</option>
+                <option value="mansion">Mansion</option>
+                <option value="estate">Estate</option>
+              </select>
+            </div>
+            <div class="search-group">
+              <label>Price Range</label>
+              <div class="price-inputs">
+                <input type="number" name="minPrice" placeholder="Min Price">
+                <span>to</span>
+                <input type="number" name="maxPrice" placeholder="Max Price">
+              </div>
+            </div>
+          </div>
+
+          <div class="search-row">
+            <div class="search-group">
+              <label>Bedrooms</label>
+              <select name="bedrooms">
+                <option value="">Any</option>
+                <option value="3">3+</option>
+                <option value="4">4+</option>
+                <option value="5">5+</option>
+                <option value="6">6+</option>
+                <option value="7">7+</option>
+              </select>
+            </div>
+            <div class="search-group">
+              <label>Property Size (sq ft)</label>
+              <div class="size-inputs">
+                <input type="number" name="minSize" placeholder="Min Size">
+                <span>to</span>
+                <input type="number" name="maxSize" placeholder="Max Size">
+              </div>
+            </div>
+            <div class="search-group">
+              <label>Year Built</label>
+              <select name="yearBuilt">
+                <option value="">Any</option>
+                <option value="2020">2020 or newer</option>
+                <option value="2015">2015 or newer</option>
+                <option value="2010">2010 or newer</option>
+                <option value="historic">Historic</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="search-row">
+            <div class="search-group amenities">
+              <label>Luxury Amenities</label>
+              <div class="amenities-grid">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="amenities[]" value="private_pool"> Private Pool
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="amenities[]" value="home_theater"> Home Theater
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="amenities[]" value="wine_cellar"> Wine Cellar
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="amenities[]" value="smart_home"> Smart Home
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="amenities[]" value="spa_sauna"> Spa/Sauna
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="amenities[]" value="private_gym"> Private Gym
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="amenities[]" value="ocean_view"> Ocean View
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="amenities[]" value="infinity_pool"> Infinity Pool
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="amenities[]" value="private_elevator"> Private Elevator
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="search-actions">
+            <button type="submit" class="search-button">Search Primary Properties</button>
+            <button type="reset" class="reset-button">Reset Filters</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Primary Properties -->
+  <section class="featured-properties">
+    <div class="container">
+      <h2>Featured Primary Properties</h2>
+      <div class="properties-grid" id="primaryPropertiesGrid">
+        <!-- Properties will be loaded here dynamically -->
+        <p style="text-align: center; grid-column: 1 / -1;">Loading properties...</p> 
+      </div>
+
+      <div class="view-more-container">
+        <!-- This button might need dynamic handling later if pagination is added -->
+        <a href="#" class="view-more-button">View More Primary Properties</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <div class="container">
+      <h2>What Our Primary Clients Say</h2>
+      <div class="testimonial-slider">
+        <div class="testimonial">
+          <div class="testimonial-content">
+            <p>"NEWMARK's primary service exceeded all expectations. Their attention to detail and understanding of the luxury market helped us find our dream home."</p>
+          </div>
+          <div class="testimonial-author">
+            <div class="author-image">
+              <img src="https://placehold.co/100x100/000000/FFFFFF.png?text=Client" alt="Client">
+            </div>
+            <div class="author-details">
+              <h4>Ahmed & Laila S.</h4>
+              <p>Palm Hills Estate Owner</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 NEWMARK. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const propertiesGrid = document.getElementById('primaryPropertiesGrid');
+
+      async function fetchProperties() {
+        try {
+          const response = await fetch('api/get_properties_by_category.php?category=primary');
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const properties = await response.json();
+          displayProperties(properties);
+        } catch (error) {
+          console.error('Error fetching primary properties:', error);
+          propertiesGrid.innerHTML = '<p style="color: red; text-align: center; grid-column: 1 / -1;">Could not load properties at this time.</p>';
+        }
+      }
+
+      function displayProperties(properties) {
+        propertiesGrid.innerHTML = ''; // Clear loading message
+
+        if (!properties || properties.length === 0) {
+          propertiesGrid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1;">No primary properties found.</p>';
+          return;
+        }
+
+        properties.forEach(property => {
+          const card = document.createElement('div');
+          card.className = 'property-card';
+          card.innerHTML = `
+            <div class="property-image">
+              ${property.tag ? `<div class="property-tag">${property.tag}</div>` : ''}
+              <img src="${property.image}" alt="${property.title}">
+            </div>
+            <div class="property-details">
+              <h3>${property.title}</h3>
+              <p class="property-location"><i class="fas fa-map-marker-alt"></i> ${property.location}</p>
+              <p class="property-price">${property.price}</p>
+              <div class="property-features">
+                <span><i class="fas fa-bed"></i> ${property.beds} Beds</span>
+                <span><i class="fas fa-bath"></i> ${property.baths} Baths</span>
+                <span><i class="fas fa-ruler-combined"></i> ${property.size.toLocaleString()} sq ft</span>
+              </div>
+              <p class="property-description">${property.description}</p>
+              <a href="property-detail.php?category=${property.category}&id=${property.id}" class="view-property">View Property</a> 
+            </div>
+          `;
+          
+          propertiesGrid.appendChild(card);
+        });
+      }
+
+      fetchProperties(); // Initial fetch on page load
+      
+      // --- Search Form Handling --- 
+      const searchForm = document.querySelector('.advanced-search-form');
+      const resetButton = searchForm?.querySelector('.reset-button');
+      
+      searchForm?.addEventListener('submit', (e) => {
+          e.preventDefault(); // Prevent default submission
+          performSearch();
+      });
+
+      resetButton?.addEventListener('click', (e) => {
+         e.preventDefault();
+         searchForm.reset();
+         // Re-fetch all properties for this category after reset
+         fetchProperties(); 
+      });
+      
+      async function performSearch() {
+          if (!searchForm || !propertiesGrid) return; // Check for propertiesGrid too
+          propertiesGrid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1;">Searching...</p>';
+
+          // Gather form data using FormData for easier handling, especially with checkboxes
+          const formData = new FormData(searchForm);
+          const queryParams = new URLSearchParams();
+
+          // Append category
+          queryParams.append('category', 'primary'); 
+
+          // Append other form fields
+          for (const [key, value] of formData.entries()) {
+              // Skip empty values unless it's an amenity checkbox which always has a value when checked
+              if (value || key === 'amenities[]') { 
+                  // Handle amenities specifically if needed (e.g., join array)
+                  // For now, URLSearchParams handles multiple values for the same key fine
+                  queryParams.append(key, value);
+              }
+          }
+          
+          // Correct the amenities key if needed (URLSearchParams might make it amenities%5B%5D=value)
+          // If the backend expects amenities=value1,value2 format, adjust here:
+          const amenities = formData.getAll('amenities[]');
+          if (amenities.length > 0) {
+              queryParams.delete('amenities[]'); // Remove the individual entries if they exist
+              queryParams.append('amenities', amenities.join(',')); // Add as comma-separated
+          }
+
+          try {
+              // Remove leading slash from path
+              const response = await fetch(`api/property_search.php?${queryParams.toString()}`);
+              if (!response.ok) {
+                  const errorData = await response.json().catch(() => ({ message: 'Search request failed' })); // Try to get error message from backend
+                  throw new Error(`HTTP error! status: ${response.status} - ${errorData.message}`);
+              }
+              const properties = await response.json();
+              displayProperties(properties); // Reuse the display function
+          } catch (error) {
+              console.error('Error performing search:', error);
+              propertiesGrid.innerHTML = `<p style="color: red; text-align: center; grid-column: 1 / -1;">Search failed: ${error.message}</p>`;
+          }
+      }
+    });
+  </script>
+</body>
+</html> 

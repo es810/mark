@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Dashboard | NEWMARK</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <!-- Admin Header -->
+  <header class="admin-header">
+    <div class="container header-container">
+      <div class="logo">
+        <img src="images/Logo.png" alt="NEWMARK Admin" class="logo-img">
+        <span>Admin Dashboard</span>
+      </div>
+      <nav class="admin-nav">
+        <ul>
+          <li><a href="/admin-dashboard.html">Dashboard</a></li>
+          <li><a href="/admin-upload.html">Upload Property</a></li>
+          <!-- Add View/Edit Properties link later -->
+          <li><a href="/admin/logout">Logout</a></li> 
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Admin Dashboard Section -->
+  <section class="admin-dashboard-section">
+    <div class="container">
+      <h1>Welcome, Admin!</h1>
+      <p>Select an option from the navigation menu to manage the website content.</p>
+      
+      <div class="dashboard-summary">
+         <h2>Quick Actions</h2>
+         <div class="quick-links">
+             <a href="/admin-upload.html" class="dashboard-button">
+                 <i class="fas fa-upload"></i> Upload New Property
+             </a>
+             <!-- We will add buttons/links to view properties later -->
+             <!-- <a href="#view-primary" class="dashboard-button">
+                 <i class="fas fa-eye"></i> View Primary Properties
+             </a>
+             <a href="#view-resale" class="dashboard-button">
+                 <i class="fas fa-eye"></i> View Resale Properties
+             </a>
+             <a href="#view-rent" class="dashboard-button">
+                 <i class="fas fa-eye"></i> View Rental Properties
+             </a> -->
+         </div>
+      </div>
+      
+      <!-- Count Summary Section -->
+      <div class="dashboard-summary counts-summary">
+        <h2>Property Overview</h2>
+        <div class="counts-grid">
+            <div class="count-card">
+                <h4>Total Properties</h4>
+                <p id="total-count">0</p>
+            </div>
+            <div class="count-card">
+                <h4>Primary Properties</h4>
+                <p id="primary-count-summary">0</p>
+            </div>
+            <div class="count-card">
+                <h4>Resale Properties</h4>
+                <p id="resale-count-summary">0</p>
+            </div>
+            <div class="count-card">
+                <h4>Rental Properties</h4>
+                <p id="rent-count-summary">0</p>
+            </div>
+        </div>
+      </div>
+
+      <!-- Property Management Area -->
+      <div id="property-management-area" style="margin-top: 40px;">
+          <h2>Manage Properties</h2>
+          
+          <div class="property-list-container">
+              <h3 id="primary-count">Primary Properties (0)</h3>
+              <table id="primary-properties-table" class="property-table">
+                  <thead>
+                      <tr>
+                          <th>Image</th>
+                          <th>Title</th>
+                          <th>Location</th>
+                          <th>Price</th>
+                          <th>Status</th>
+                          <th>Year Built</th>
+                          <th>Actions</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <!-- Primary properties loaded here -->
+                  </tbody>
+              </table>
+          </div>
+
+          <div class="property-list-container">
+              <h3 id="resale-count">Resale Properties (0)</h3>
+              <table id="resale-properties-table" class="property-table">
+                 <thead>
+                      <tr>
+                          <th>Image</th>
+                          <th>Title</th>
+                          <th>Location</th>
+                          <th>Price</th>
+                          <th>Status</th>
+                          <th>Year Built</th>
+                          <th>Actions</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <!-- Resale properties loaded here -->
+                  </tbody>
+              </table>
+          </div>
+
+          <div class="property-list-container">
+              <h3 id="rent-count">Rental Properties (0)</h3>
+              <table id="rent-properties-table" class="property-table">
+                 <thead>
+                      <tr>
+                          <th>Image</th>
+                          <th>Title</th>
+                          <th>Location</th>
+                          <th>Price</th>
+                          <th>Status</th>
+                          <th>Year Built</th>
+                          <th>Actions</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <!-- Rental properties loaded here -->
+                  </tbody>
+              </table>
+          </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Admin Footer -->
+  <footer class="admin-footer">
+    <div class="container">
+      <p>&copy; 2025 NEWMARK Admin Panel</p>
+    </div>
+  </footer>
+
+  <!-- Dashboard JS -->
+  <script>
+      document.addEventListener('DOMContentLoaded', () => {
+          console.log("Admin Dashboard loaded.");
+          fetchAllProperties();
+      });
+
+      async function fetchAllProperties() {
+          try {
+              const response = await fetch('/api/properties/all');
+              if (!response.ok) {
+                  if (response.status === 401 || response.status === 403) {
+                     console.error("Unauthorized access. Redirecting to login.");
+                     // Optional: Redirect to login if session expired
+                     // window.location.href = '/admin-login.html'; 
+                     return;
+                  }
+                  throw new Error(`HTTP error! status: ${response.status}`);
+              }
+              const allProperties = await response.json();
+              displayProperties(allProperties);
+          } catch (error) {
+              console.error('Error fetching all properties:', error);
+              const managementArea = document.getElementById('property-management-area');
+              if(managementArea) managementArea.innerHTML = '<p style="color: red;">Could not load property data.</p>';
+          }
+      }
+
+      function displayProperties(properties) {
+          const categories = ['primary', 'resale', 'rent'];
+          let totalCount = 0;
+          
+          categories.forEach(category => {
+              const tableBody = document.getElementById(`${category}-properties-table`)?.querySelector('tbody');
+              const countHeader = document.getElementById(`${category}-count`);
+              const countSummary = document.getElementById(`${category}-count-summary`); // Get summary element
+              const categoryProperties = properties[category] || [];
+              const categoryCount = categoryProperties.length;
+              totalCount += categoryCount; // Add to total count
+              
+              // Update count above table
+              if (countHeader) {
+                   countHeader.textContent = `${category.charAt(0).toUpperCase() + category.slice(1)} Properties (${categoryCount})`;
+              }
+              // Update count in summary section
+              if (countSummary) {
+                   countSummary.textContent = categoryCount;
+              }
+              
+              if (tableBody) {
+                  tableBody.innerHTML = ''; // Clear existing rows
+                  if (categoryProperties.length === 0) {
+                      tableBody.innerHTML = `<tr><td colspan="5" style="text-align:center;">No ${category} properties found.</td></tr>`;
+                  } else {
+                      categoryProperties.forEach(prop => {
+                          const row = document.createElement('tr');
+                          row.dataset.id = prop.id; // Store ID for later actions
+                          row.dataset.category = category;
+
+                          row.innerHTML = `
+                              <td><img src="${(prop.images && prop.images.length > 0) ? prop.images[0] : 'https://placehold.co/80x60/cccccc/666666?text=No+Image'}" alt="${prop.title}" width="80"></td>
+                              <td>${prop.title}</td>
+                              <td>${prop.location}</td>
+                              <td>${prop.price}</td>
+                              <td>${prop.status || 'N/A'}</td>
+                              <td>${prop.yearBuilt || 'N/A'}</td>
+                              <td>
+                                  <button class="action-button edit-button" onclick="editProperty('${prop.id}', '${category}')">Edit</button>
+                                  <button class="action-button delete-button" onclick="confirmDelete('${prop.id}', '${category}', this)">Delete</button>
+                              </td>
+                          `;
+                          tableBody.appendChild(row);
+                      });
+                  }
+              }
+          });
+          
+          // Update total count in summary section
+          const totalCountSummary = document.getElementById('total-count');
+          if (totalCountSummary) {
+              totalCountSummary.textContent = totalCount;
+          }
+      }
+
+      // Placeholder functions for Edit and Delete actions
+      function editProperty(id, category) {
+          console.log(`Edit property clicked: ID=${id}, Category=${category}`);
+          // Redirect to the edit page with query parameters
+          window.location.href = `/admin-edit.html?category=${category}&id=${id}`;
+      }
+      
+      function confirmDelete(id, category, buttonElement) {
+          console.log(`Delete property clicked: ID=${id}, Category=${category}`);
+          // Add a visual cue that deletion is in progress
+          const rowElement = buttonElement.closest('tr');
+          rowElement.style.opacity = '0.5'; // Dim the row
+          buttonElement.disabled = true; // Disable button during process
+          buttonElement.textContent = 'Deleting...';
+          
+          if (confirm(`Are you sure you want to delete this ${category} property? This cannot be undone.`)) {
+              deleteProperty(id, category, rowElement); 
+          } else {
+              console.log("Deletion cancelled.");
+              // Restore row appearance if cancelled
+              rowElement.style.opacity = '1';
+              buttonElement.disabled = false;
+              buttonElement.textContent = 'Delete';
+          }
+      }
+      
+      // Actual delete function
+      async function deleteProperty(id, category, rowElement) {
+          const deleteButton = rowElement.querySelector('.delete-button');
+          try {
+              const response = await fetch(`/admin/property/${category}/${id}`, { method: 'DELETE' });
+              if (response.ok) {
+                  alert('Property deleted successfully.');
+                  rowElement.remove(); // Remove row from table
+                  // Optionally: Re-fetch properties or just update counts manually if needed
+                  // For simplicity, let's just update the counts after successful deletion
+                  updateCountsAfterDeletion(category);
+              } else {
+                  const result = await response.json();
+                  alert(`Error deleting property: ${result.message || response.statusText}`);
+                  // Restore row appearance on error
+                  rowElement.style.opacity = '1';
+                  if (deleteButton) {
+                     deleteButton.disabled = false;
+                     deleteButton.textContent = 'Delete';
+                  }
+              }
+          } catch (error) {
+              console.error('Error deleting property:', error);
+              alert(`An error occurred while deleting the property. Check console for details. Error: ${error.message}`);
+              // Restore row appearance on error
+              rowElement.style.opacity = '1';
+               if (deleteButton) {
+                  deleteButton.disabled = false;
+                  deleteButton.textContent = 'Delete';
+              }
+          }
+      }
+      
+      // Helper function to update count display
+      function updateCountsAfterDeletion(category) {
+         const countHeader = document.getElementById(`${category}-count`);
+         const countSummary = document.getElementById(`${category}-count-summary`); // Get summary element
+         const totalCountSummary = document.getElementById('total-count'); // Get total count element
+         const tableBody = document.getElementById(`${category}-properties-table`)?.querySelector('tbody');
+         if (countHeader && tableBody && countSummary && totalCountSummary) {
+             const currentCount = tableBody.querySelectorAll('tr').length;
+             const currentTotal = parseInt(totalCountSummary.textContent, 10) || 0;
+             // Update category counts
+             countHeader.textContent = `${category.charAt(0).toUpperCase() + category.slice(1)} Properties (${currentCount})`;
+             countSummary.textContent = currentCount;
+             // Update total count
+             totalCountSummary.textContent = currentTotal - 1 > 0 ? currentTotal - 1 : 0;
+             
+             if (currentCount === 0) {
+                  tableBody.innerHTML = `<tr><td colspan="5" style="text-align:center;">No ${category} properties found.</td></tr>`;
+             }
+         }
+      }
+
+  </script>
+</body>
+</html> 

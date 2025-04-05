@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NEWMARK</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Using Google Fonts for a modern look -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <img src="images/Logo.png" alt="NEWMARK" class="logo-img">
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="home.html">Home</a></li>
+          <li><a href="primary.html">Primary</a></li>
+          <li><a href="resale.html">Resale</a></li>
+          <li><a href="rent.html">Rent</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+    </div>
+  </section>
+
+  <script>
+    document.getElementById('heroSection').addEventListener('click', function() {
+      this.classList.toggle('active');
+    });
+  </script>
+
+  <!-- Advanced Search Section -->
+  <section class="search-section">
+    <div class="container">
+      <h2>Find Your Perfect Property</h2>
+      <div class="search-container">
+        <form class="advanced-search-form">
+          <div class="search-row">
+            <div class="search-group">
+              <label>Location</label>
+              <input type="text" placeholder="Enter city, neighborhood or address">
+            </div>
+            <div class="search-group">
+              <label>Property Type</label>
+              <select>
+                <option value="">All Types</option>
+                <option value="apartment">Apartment</option>
+                <option value="house">House</option>
+                <option value="villa">Villa</option>
+                <option value="office">Office Space</option>
+                <option value="retail">Retail</option>
+              </select>
+            </div>
+            <div class="search-group">
+              <label>Price Range</label>
+              <div class="price-inputs">
+                <input type="number" placeholder="Min Price">
+                <span>to</span>
+                <input type="number" placeholder="Max Price">
+              </div>
+            </div>
+          </div>
+
+          <div class="search-row">
+            <div class="search-group">
+              <label>Bedrooms</label>
+              <select>
+                <option value="">Any</option>
+                <option value="1">1+</option>
+                <option value="2">2+</option>
+                <option value="3">3+</option>
+                <option value="4">4+</option>
+                <option value="5">5+</option>
+              </select>
+            </div>
+            <div class="search-group">
+              <label>Bathrooms</label>
+              <select>
+                <option value="">Any</option>
+                <option value="1">1+</option>
+                <option value="2">2+</option>
+                <option value="3">3+</option>
+                <option value="4">4+</option>
+              </select>
+            </div>
+            <div class="search-group">
+              <label>Property Size (sq ft)</label>
+              <div class="size-inputs">
+                <input type="number" placeholder="Min Size">
+                <span>to</span>
+                <input type="number" placeholder="Max Size">
+              </div>
+            </div>
+          </div>
+
+          <div class="search-row">
+            <div class="search-group amenities">
+              <label>Amenities</label>
+              <div class="amenities-grid">
+                <label class="checkbox-label">
+                  <input type="checkbox"> Swimming Pool
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox"> Garage
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox"> Garden
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox"> Security
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox"> Gym
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox"> Central AC
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="search-actions">
+            <button type="submit" class="search-button">Search Properties</button>
+            <button type="reset" class="reset-button">Reset Filters</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- What are you looking for Section -->
+  <section class="looking-for-section">
+    <div class="container">
+      <h2>What are you looking for?</h2>
+      <div class="category-grid">
+        <div class="category-card">
+          <div class="category-icon">🏠</div>
+          <h3>Residential</h3>
+          <p>Find your dream home among our curated selection of houses, apartments, and luxury villas.</p>
+        </div>
+        <div class="category-card">
+          <div class="category-icon">🏢</div>
+          <h3>Commercial</h3>
+          <p>Discover prime office spaces, retail locations, and commercial properties for your business.</p>
+        </div>
+        <div class="category-card">
+          <div class="category-icon">🌆</div>
+          <h3>Investment</h3>
+          <p>Explore high-yield investment opportunities in primary locations with strong growth potential.</p>
+        </div>
+        <div class="category-card">
+          <div class="category-icon">🏗️</div>
+          <h3>Development</h3>
+          <p>Browse upcoming developments and off-plan properties for early investment advantages.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Services Section -->
+  <section class="our-services">
+    <div class="container">
+      <h2>Our Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-home"></i>
+          </div>
+          <h3>Property Sales</h3>
+          <p>Our experienced agents will guide you through every step of buying or selling your property, ensuring a smooth and successful transaction.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-key"></i>
+          </div>
+          <h3>Property Management</h3>
+          <p>Let us handle the day-to-day responsibilities of your investment property, from tenant relations to maintenance and financial reporting.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Investment Consulting</h3>
+          <p>Make informed decisions with expert analysis of market trends, potential returns, and strategic investment opportunities in promising locations.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-file-signature"></i>
+          </div>
+          <h3>Legal & Documentation</h3>
+          <p>Navigate complex real estate regulations with our comprehensive legal support, ensuring all documentation meets regulatory requirements.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-hand-holding-usd"></i>
+          </div>
+          <h3>Financing Options</h3>
+          <p>Access tailored financing solutions through our network of trusted financial partners, with competitive rates and flexible terms.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-search-location"></i>
+          </div>
+          <h3>Property Valuation</h3>
+          <p>Receive accurate property valuations based on comprehensive market analysis and property assessment from our valuation specialists.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map Section -->
+  <section class="map-section">
+    <div class="container">
+      <h2>Our Locations</h2>
+      <div class="map-container">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7290750.245722543!2d26.424675777619695!3d26.82729024331615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14368976c35c36e9%3A0x2c45a00925c4c444!2sEgypt!5e0!3m2!1sen!2sus!4v1711246674961!5m2!1sen!2sus"
+          width="100%" 
+          height="500" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 NEWMARK. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

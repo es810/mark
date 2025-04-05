@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Edit Property | NEWMARK Admin</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <!-- Admin Header -->
+  <header class="admin-header">
+    <div class="container header-container">
+      <div class="logo">
+        <img src="images/Logo.png" alt="NEWMARK Admin" class="logo-img">
+        <span>Admin Panel - Edit Property</span>
+      </div>
+      <nav class="admin-nav">
+        <ul>
+          <li><a href="/admin-dashboard.html">Dashboard</a></li>
+          <li><a href="/admin-upload.html">Upload Property</a></li>
+          <li><a href="/admin/logout">Logout</a></li> 
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Admin Edit Section -->
+  <section class="admin-edit-section admin-upload-section"> <!-- Reuse upload section styles -->
+    <div class="container">
+      <h2 id="edit-title">Edit Property Details</h2>
+      <form id="editPropertyForm" enctype="multipart/form-data">
+        
+        <!-- Hidden fields to store ID and original category -->
+        <input type="hidden" id="propertyId" name="id">
+        <input type="hidden" id="originalCategory" name="originalCategory">
+
+        <div class="form-grid">
+          <!-- Basic Info -->
+          <div class="form-group">
+            <label for="propertyTitle">Property Title</label>
+            <input type="text" id="propertyTitle" name="title" required>
+          </div>
+          <div class="form-group">
+            <label for="propertyLocation">Location</label>
+            <input type="text" id="propertyLocation" name="location" required>
+          </div>
+          <div class="form-group">
+            <label for="propertyCategory">Category</label>
+            <select id="propertyCategory" name="category" required>
+              <!-- Options loaded dynamically? Or keep static? Keep static for simplicity -->
+              <option value="primary">Primary</option>
+              <option value="resale">Resale</option>
+              <option value="rent">Rent</option>
+            </select>
+            <small>Changing category will move the property.</small>
+          </div>
+          <div class="form-group">
+            <label for="propertyPrice">Price / Monthly Rent (EGP)</label>
+            <input type="number" id="propertyPrice" name="price" required>
+            <small>Enter numeric value only (e.g., 5000000 or 15000).</small>
+          </div>
+
+          <!-- Features -->
+          <div class="form-group">
+            <label for="propertyBeds">Bedrooms</label>
+            <input type="number" id="propertyBeds" name="beds" min="0" required>
+          </div>
+          <div class="form-group">
+            <label for="propertyBaths">Bathrooms</label>
+            <input type="number" id="propertyBaths" name="baths" min="0" required>
+          </div>
+          <div class="form-group">
+            <label for="propertySize">Size (sq ft)</label>
+            <input type="number" id="propertySize" name="size" min="0" required>
+          </div>
+          <div class="form-group">
+            <label for="propertyTag">Property Tag</label>
+            <input type="text" id="propertyTag" name="tag" placeholder="e.g., Featured, New, Renovated">
+          </div>
+          
+          <!-- >>> New Fields Start >>> -->
+          <div class="form-group">
+            <label for="propertyYearBuilt">Year Built</label>
+            <input type="number" id="propertyYearBuilt" name="yearBuilt" min="1800" max="2100" placeholder="e.g., 2015">
+          </div>
+          <div class="form-group">
+            <label for="propertyStatus">Status</label>
+            <select id="propertyStatus" name="status" required>
+                <option value="available">Available</option>
+                <option value="under_contract">Under Contract</option>
+                <option value="sold">Sold</option>
+                <option value="rented">Rented</option>
+            </select>
+          </div>
+          <div class="form-group full-width">
+            <label for="propertyAmenities">Amenities (comma-separated)</label>
+            <textarea id="propertyAmenities" name="amenities" rows="3" placeholder="e.g., Private Pool, Gym Access, Security, Ocean View"></textarea>
+          </div>
+          <!-- <<< New Fields End <<< -->
+          
+          <!-- >>> Contact Info Start >>> -->
+          <div class="form-group">
+            <label for="contactNumber">Contact Number (Optional)</label>
+            <input type="tel" id="contactNumber" name="contactNumber" placeholder="e.g., 01xxxxxxxxx">
+          </div>
+          <div class="form-group">
+            <label for="whatsappNumber">WhatsApp Number (Optional)</label>
+            <input type="tel" id="whatsappNumber" name="whatsappNumber" placeholder="e.g., 201xxxxxxxxx (include country code)">
+             <small>Include country code for WhatsApp (e.g., 20 for Egypt)</small>
+          </div>
+          <!-- <<< Contact Info End <<< -->
+          
+          <!-- Description -->
+          <div class="form-group full-width">
+            <label for="propertyDescription">Description</label>
+            <textarea id="propertyDescription" name="description" rows="5" required></textarea>
+          </div>
+
+          <!-- Image Upload / Management -->
+          <div class="form-group full-width">
+             <label>Current Images (Check to delete)</label>
+             <div id="currentImagesContainer" class="current-images-grid">
+                 <!-- Current images loaded here -->
+                 <p>Loading images...</p>
+             </div>
+             <input type="hidden" id="imagesToDelete" name="imagesToDelete" value="[]"> <!-- Stores paths of images to delete -->
+          </div>
+          <div class="form-group full-width">
+             <label for="propertyImages">Add/Replace Images (Optional)</label>
+             <input type="file" id="propertyImages" name="images" accept="image/*" multiple>
+             <small>Upload new images to add them. If you upload new images AND mark old ones for deletion, the old ones will be removed.</small>
+          </div>
+        </div>
+        
+        <button type="submit" class="upload-button">Save Changes</button>
+        <a href="/admin-dashboard.html" class="cancel-button">Cancel</a>
+        <p id="editStatus" class="status-message"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Admin Footer -->
+  <footer class="admin-footer">
+    <div class="container">
+      <p>&copy; 2025 NEWMARK Admin Panel</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('editPropertyForm');
+        const statusMessage = document.getElementById('editStatus');
+        const currentImageElement = document.getElementById('currentImage');
+        const currentImagesContainer = document.getElementById('currentImagesContainer');
+        const imagesToDeleteInput = document.getElementById('imagesToDelete');
+        const editTitleElement = document.getElementById('edit-title');
+
+        // Get ID and Category from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const propertyId = urlParams.get('id');
+        const propertyCategory = urlParams.get('category');
+
+        if (!propertyId || !propertyCategory) {
+            statusMessage.textContent = 'Error: Missing property ID or category.';
+            statusMessage.style.color = 'red';
+            form.style.display = 'none'; // Hide form if essential info is missing
+            return;
+        }
+
+        // --- Fetch existing property data --- 
+        async function fetchPropertyDetails() {
+            try {
+                // Assuming backend route /api/property/:category/:id exists
+                const response = await fetch(`/api/property/${propertyCategory}/${propertyId}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const property = await response.json();
+                populateForm(property);
+            } catch (error) {
+                console.error('Error fetching property details:', error);
+                statusMessage.textContent = `Error loading property details: ${error.message}`;
+                statusMessage.style.color = 'red';
+                form.style.display = 'none';
+            }
+        }
+        
+        // --- Populate the form with fetched data --- 
+        function populateForm(property) {
+            if (!property) return;
+            
+            editTitleElement.textContent = `Edit Property: ${property.title || 'Details'}`;
+            
+            form.querySelector('#propertyId').value = property.id;
+            form.querySelector('#originalCategory').value = propertyCategory; // Store the original category
+            form.querySelector('#propertyTitle').value = property.title || '';
+            form.querySelector('#propertyLocation').value = property.location || '';
+            form.querySelector('#propertyCategory').value = propertyCategory; // Set current category in dropdown
+            // Extract number from price string for the input field
+            const priceNum = parseInt(String(property.price || '0').replace(/[^\d]/g, ''), 10);
+            form.querySelector('#propertyPrice').value = priceNum;
+            form.querySelector('#propertyBeds').value = property.beds || 0;
+            form.querySelector('#propertyBaths').value = property.baths || 0;
+            form.querySelector('#propertySize').value = property.size || 0;
+            form.querySelector('#propertyTag').value = property.tag || '';
+            form.querySelector('#propertyDescription').value = property.description || '';
+            // >>> Populate New Fields >>>
+            form.querySelector('#propertyYearBuilt').value = property.yearBuilt || '';
+            form.querySelector('#propertyStatus').value = property.status || 'available';
+            form.querySelector('#propertyAmenities').value = Array.isArray(property.amenities) ? property.amenities.join(', ') : (property.amenities || '');
+            // >>> Populate Contact Info >>>
+            form.querySelector('#contactNumber').value = property.contactNumber || '';
+            form.querySelector('#whatsappNumber').value = property.whatsappNumber || '';
+            // <<< Populate Contact Info <<<
+            // <<< Populate New Fields <<<
+            
+            // Populate Current Images
+            currentImagesContainer.innerHTML = ''; // Clear loading/previous
+            if (property.images && property.images.length > 0) {
+                property.images.forEach(imgPath => {
+                    const imgDiv = document.createElement('div');
+                    imgDiv.className = 'current-image-item';
+                    imgDiv.innerHTML = `
+                        <img src="${imgPath}" alt="Current Image">
+                        <label>
+                           <input type="checkbox" value="${imgPath}" onchange="updateImagesToDelete(this)">
+                           Delete
+                        </label>
+                    `;
+                    currentImagesContainer.appendChild(imgDiv);
+                });
+            } else {
+                currentImagesContainer.innerHTML = '<p>No current images.</p>';
+            }
+        }
+
+        // --- Function to update the hidden input for images to delete --- 
+        window.updateImagesToDelete = function(checkbox) {
+            let currentToDelete = JSON.parse(imagesToDeleteInput.value || '[]');
+            if (checkbox.checked) {
+                if (!currentToDelete.includes(checkbox.value)) {
+                    currentToDelete.push(checkbox.value);
+                }
+            } else {
+                currentToDelete = currentToDelete.filter(item => item !== checkbox.value);
+            }
+            imagesToDeleteInput.value = JSON.stringify(currentToDelete);
+            console.log('Images to delete:', imagesToDeleteInput.value);
+        }
+
+        // --- Handle form submission --- 
+        form?.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            statusMessage.textContent = 'Saving...';
+            statusMessage.style.color = 'orange';
+            statusMessage.style.display = 'block';
+
+            const formData = new FormData(form);
+            const currentId = formData.get('id');
+            const originalCat = formData.get('originalCategory'); // Use original category for the API endpoint
+
+            if (!currentId || !originalCat) {
+                 statusMessage.textContent = 'Error: Missing property ID or original category for update.';
+                 statusMessage.style.color = 'red';
+                 return;
+            }
+            
+            // Use PUT method for update
+            try {
+                const response = await fetch(`/admin/property/${originalCat}/${currentId}`, {
+                    method: 'PUT', 
+                    body: formData // Let FormData handle encoding
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    statusMessage.textContent = 'Property updated successfully! Redirecting...';
+                    statusMessage.style.color = 'green';
+                    // Redirect back to dashboard after a short delay
+                    setTimeout(() => {
+                        window.location.href = '/admin-dashboard.html';
+                    }, 1500);
+                } else {
+                    statusMessage.textContent = `Error: ${result.message || 'Update failed.'}`;
+                    statusMessage.style.color = 'red';
+                }
+            } catch (error) {
+                console.error('Update error:', error);
+                statusMessage.textContent = 'Update failed. Check console for details.';
+                statusMessage.style.color = 'red';
+            }
+        });
+
+        // --- Initial fetch --- 
+        fetchPropertyDetails();
+    });
+  </script>
+</body>
+</html> 

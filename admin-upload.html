@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Upload Property | NEWMARK Admin</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <!-- Admin Header -->
+  <header class="admin-header">
+    <div class="container header-container">
+      <div class="logo">
+        <img src="images/Logo.png" alt="NEWMARK Admin" class="logo-img">
+        <span>Admin Panel - Upload Property</span>
+      </div>
+      <nav class="admin-nav">
+        <ul>
+          <li><a href="/admin-dashboard.html">Dashboard</a></li>
+          <li><a href="/admin-upload.html">Upload Property</a></li>
+          <!-- Add View/Edit Properties link later -->
+          <li><a href="/admin/logout">Logout</a></li> 
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Admin Upload Section -->
+  <section class="admin-upload-section">
+    <div class="container">
+      <h2>Upload New Property Listing</h2>
+      <form id="uploadPropertyForm" enctype="multipart/form-data"> <!-- Need enctype for file uploads -->
+        
+        <div class="form-grid">
+          <!-- Basic Info -->
+          <div class="form-group">
+            <label for="propertyTitle">Property Title</label>
+            <input type="text" id="propertyTitle" name="title" placeholder="e.g., Luxury Waterfront Villa" required>
+          </div>
+          <div class="form-group">
+            <label for="propertyLocation">Location</label>
+            <input type="text" id="propertyLocation" name="location" placeholder="e.g., Beachfront, Alexandria" required>
+          </div>
+          <div class="form-group">
+            <label for="propertyCategory">Category</label>
+            <select id="propertyCategory" name="category" required>
+              <option value="" disabled selected>Select Category</option>
+              <option value="primary">Primary</option>
+              <option value="resale">Resale</option>
+              <option value="rent">Rent</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="propertyPrice">Price / Monthly Rent</label>
+            <input type="number" id="propertyPrice" name="price" placeholder="Enter amount" required>
+            <small>Enter full price for Primary/Resale, Monthly rent for Rent</small>
+          </div>
+
+          <!-- Features -->
+          <div class="form-group">
+            <label for="propertyBeds">Bedrooms</label>
+            <input type="number" id="propertyBeds" name="beds" min="0" placeholder="e.g., 4" required>
+          </div>
+          <div class="form-group">
+            <label for="propertyBaths">Bathrooms</label>
+            <input type="number" id="propertyBaths" name="baths" min="0" placeholder="e.g., 3" required>
+          </div>
+          <div class="form-group">
+            <label for="propertySize">Size (sq ft)</label>
+            <input type="number" id="propertySize" name="size" min="0" placeholder="e.g., 2500" required>
+          </div>
+          <div class="form-group">
+            <label for="propertyTag">Property Tag</label>
+            <input type="text" id="propertyTag" name="tag" placeholder="e.g., Featured, New, Renovated">
+            <small>Optional tag displayed on card</small>
+          </div>
+          
+          <!-- >>> New Fields Start >>> -->
+          <div class="form-group">
+            <label for="propertyYearBuilt">Year Built</label>
+            <input type="number" id="propertyYearBuilt" name="yearBuilt" min="1800" max="2100" placeholder="e.g., 2015">
+          </div>
+          <div class="form-group">
+            <label for="propertyStatus">Status</label>
+            <select id="propertyStatus" name="status" required>
+                <option value="available" selected>Available</option>
+                <option value="under_contract">Under Contract</option>
+                <option value="sold">Sold</option>
+                <option value="rented">Rented</option>
+            </select>
+          </div>
+          <div class="form-group full-width">
+            <label for="propertyAmenities">Amenities (comma-separated)</label>
+            <textarea id="propertyAmenities" name="amenities" rows="3" placeholder="e.g., Private Pool, Gym Access, Security, Ocean View"></textarea>
+          </div>
+          <!-- <<< New Fields End <<< -->
+          
+          <!-- >>> Contact Info Start >>> -->
+          <div class="form-group">
+            <label for="contactNumber">Contact Number (Optional)</label>
+            <input type="tel" id="contactNumber" name="contactNumber" placeholder="e.g., 01xxxxxxxxx">
+          </div>
+          <div class="form-group">
+            <label for="whatsappNumber">WhatsApp Number (Optional)</label>
+            <input type="tel" id="whatsappNumber" name="whatsappNumber" placeholder="e.g., 201xxxxxxxxx (include country code)">
+            <small>Include country code for WhatsApp (e.g., 20 for Egypt)</small>
+          </div>
+          <!-- <<< Contact Info End <<< -->
+          
+          <!-- Description -->
+          <div class="form-group full-width">
+            <label for="propertyDescription">Description</label>
+            <textarea id="propertyDescription" name="description" rows="5" placeholder="Detailed description of the property..." required></textarea>
+          </div>
+
+          <!-- Image Upload -->
+          <div class="form-group full-width">
+            <label for="propertyImages">Property Images (Select multiple)</label>
+            <input type="file" id="propertyImages" name="images" accept="image/*" required multiple>
+            <small>Upload at least one image. The first image selected will be the main display image.</small>
+          </div>
+          
+          <!-- Category Specific Fields (Optional - could be added later) -->
+          <!-- Example for Resale: -->
+          <!-- 
+          <div class="form-group resale-field" style="display:none;">
+            <label for="propertyAge">Property Age (Resale)</label>
+            <input type="text" id="propertyAge" name="age" placeholder="e.g., 5-10 years">
+          </div>
+          <div class="form-group resale-field" style="display:none;">
+            <label for="renovationStatus">Renovation Status (Resale)</label>
+            <input type="text" id="renovationStatus" name="renovation" placeholder="e.g., Fully Renovated">
+          </div>
+          -->
+          <!-- Example for Rent: -->
+          <!-- 
+          <div class="form-group rent-field" style="display:none;">
+            <label for="leaseTerm">Lease Term (Rent)</label>
+            <input type="text" id="leaseTerm" name="leaseTerm" placeholder="e.g., Long-term (12+ months)">
+          </div>
+           -->
+        </div>
+        
+        <button type="submit" class="upload-button">Upload Property</button>
+        <p id="uploadStatus" class="status-message"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Simplified Footer -->
+  <footer class="admin-footer">
+    <div class="container">
+      <p>&copy; 2025 NEWMARK Admin Panel</p>
+    </div>
+  </footer>
+
+  <script>
+    const form = document.getElementById('uploadPropertyForm');
+    const statusMessage = document.getElementById('uploadStatus');
+
+    // // Placeholder: Show/hide category-specific fields (if implemented)
+    // const categorySelect = document.getElementById('propertyCategory');
+    // categorySelect?.addEventListener('change', function() {
+    //   document.querySelectorAll('.resale-field, .rent-field').forEach(el => el.style.display = 'none');
+    //   if (this.value === 'resale') {
+    //     document.querySelectorAll('.resale-field').forEach(el => el.style.display = 'block');
+    //   } else if (this.value === 'rent') {
+    //     document.querySelectorAll('.rent-field').forEach(el => el.style.display = 'block');
+    //   }
+    // });
+
+    form?.addEventListener('submit', async function(e) {
+      e.preventDefault(); // Prevent default HTML form submission
+      statusMessage.textContent = 'Uploading...';
+      statusMessage.style.color = 'orange';
+      statusMessage.style.display = 'block'; // Make sure message is visible
+
+      const formData = new FormData(form);
+
+      // Send data to the backend API
+      try {
+        const response = await fetch('/admin/upload', { // Backend endpoint
+          method: 'POST',
+          body: formData // FormData handles the multipart/form-data encoding automatically
+          // No need to set Content-Type header when using FormData with fetch
+        });
+
+        const result = await response.json(); // Expect JSON response
+
+        if (response.ok) {
+          statusMessage.textContent = 'Property uploaded successfully!';
+          statusMessage.style.color = 'green';
+          form.reset(); // Clear the form on success
+        } else {
+          // Display error message from backend or a default one
+          statusMessage.textContent = `Error: ${result.message || 'Upload failed. Status: ' + response.status}`;
+          statusMessage.style.color = 'red';
+        }
+      } catch (error) {
+        console.error('Upload error:', error);
+        statusMessage.textContent = 'Network or server error during upload. Check console for details.';
+        statusMessage.style.color = 'red';
+      }
+      
+      // Remove the placeholder simulation block
+      // // **Placeholder for demonstration without backend:**
+      // ... (placeholder code removed)
+      // // End Placeholder
+    });
+  </script>
+</body>
+</html> 

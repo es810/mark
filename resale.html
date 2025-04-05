@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resale Properties | NEWMARK</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Using Google Fonts for a modern look -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <img src="images/Logo.png" alt="NEWMARK" class="logo-img">
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="primary.html">Primary</a></li>
+          <li><a href="resale.html">Resale</a></li>
+          <li><a href="rent.html">Rent</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" style="background: url('images/New Mark-Brand Direction (2)_page-0022.jpg') no-repeat center center/cover;">
+    <div class="hero-content">
+      <div class="investment-text">RESALE PROPERTIES</div>
+      <div class="brand-statement">
+        <p>FIND VALUE AND CHARACTER IN OUR CURATED RESALE COLLECTION</p>
+        <p>EXCEPTIONAL HOMES WITH ESTABLISHED COMMUNITIES AND CHARM</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resale Filters Section -->
+  <section class="search-section">
+    <div class="container">
+      <h2>Find Your Resale Property</h2>
+      <div class="search-container">
+        <form class="advanced-search-form">
+          <div class="search-row">
+            <div class="search-group">
+              <label>Location</label>
+              <select>
+                <option value="">Select Location</option>
+                <option value="downtown">Downtown</option>
+                <option value="suburbs">Suburbs</option>
+                <option value="gated">Gated Communities</option>
+                <option value="compounds">Compounds</option>
+              </select>
+            </div>
+            <div class="search-group">
+              <label>Property Type</label>
+              <select>
+                <option value="">All Types</option>
+                <option value="apartment">Apartment</option>
+                <option value="house">House</option>
+                <option value="villa">Villa</option>
+                <option value="townhouse">Townhouse</option>
+                <option value="chalet">Chalet</option>
+              </select>
+            </div>
+            <div class="search-group">
+              <label>Price Range</label>
+              <div class="price-inputs">
+                <input type="number" placeholder="Min Price">
+                <span>to</span>
+                <input type="number" placeholder="Max Price">
+              </div>
+            </div>
+          </div>
+
+          <div class="search-row">
+            <div class="search-group">
+              <label>Bedrooms</label>
+              <select>
+                <option value="">Any</option>
+                <option value="1">1+</option>
+                <option value="2">2+</option>
+                <option value="3">3+</option>
+                <option value="4">4+</option>
+                <option value="5">5+</option>
+              </select>
+            </div>
+            <div class="search-group">
+              <label>Property Age</label>
+              <select>
+                <option value="">Any</option>
+                <option value="0-5">0-5 years</option>
+                <option value="5-10">5-10 years</option>
+                <option value="10-20">10-20 years</option>
+                <option value="20+">20+ years</option>
+              </select>
+            </div>
+            <div class="search-group">
+              <label>Renovation Status</label>
+              <select>
+                <option value="">Any</option>
+                <option value="renovated">Fully Renovated</option>
+                <option value="partial">Partially Renovated</option>
+                <option value="original">Original Condition</option>
+                <option value="fixer">Needs Renovation</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="search-row">
+            <div class="search-group amenities">
+              <label>Amenities</label>
+              <div class="amenities-grid">
+                <label class="checkbox-label">
+                  <input type="checkbox"> Parking
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox"> Swimming Pool
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox"> Garden
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox"> Security
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox"> Elevator
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox"> Balcony
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox"> Storage
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox"> Near Schools
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox"> Near Transport
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="search-actions">
+            <button type="submit" class="search-button">Search Resale Properties</button>
+            <button type="reset" class="reset-button">Reset Filters</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Resale Properties -->
+  <section class="featured-properties">
+    <div class="container">
+      <h2>Featured Resale Properties</h2>
+      <div class="properties-grid" id="resalePropertiesGrid">
+        <!-- Properties will be loaded here dynamically -->
+        <p style="text-align: center; grid-column: 1 / -1;">Loading properties...</p>
+      </div>
+
+      <div class="view-more-container">
+        <a href="#" class="view-more-button">View More Resale Properties</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Resale Section -->
+  <section class="resale-benefits">
+    <div class="container">
+      <h2>Why Choose Resale Properties</h2>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i class="fas fa-map-marked-alt"></i>
+          </div>
+          <h3>Established Neighborhoods</h3>
+          <p>Resale properties are typically located in mature communities with developed infrastructure, amenities, and neighborhood character.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i class="fas fa-home"></i>
+          </div>
+          <h3>Move-in Ready</h3>
+          <p>Many resale properties are available for immediate occupancy, allowing you to settle in without the wait associated with new developments.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i class="fas fa-money-bill-wave"></i>
+          </div>
+          <h3>Price Advantage</h3>
+          <p>Often more competitively priced than new properties, resale homes can offer excellent value and potential for appreciation over time.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i class="fas fa-tree"></i>
+          </div>
+          <h3>Mature Landscaping</h3>
+          <p>Enjoy established gardens, mature trees, and developed outdoor spaces that new properties may take years to achieve.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <div class="container">
+      <h2>What Our Resale Clients Say</h2>
+      <div class="testimonial-slider">
+        <div class="testimonial">
+          <div class="testimonial-content">
+            <p>"NEWMARK helped us find the perfect resale property in an established neighborhood with excellent schools for our children. Their expertise made the process seamless and stress-free."</p>
+          </div>
+          <div class="testimonial-author">
+            <div class="author-image">
+              <img src="https://placehold.co/100x100/000000/FFFFFF.png?text=Client" alt="Client">
+            </div>
+            <div class="author-details">
+              <h4>The Hassan Family</h4>
+              <p>El Rehab City Residents</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 NEWMARK. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const propertiesGrid = document.getElementById('resalePropertiesGrid');
+
+      async function fetchProperties() {
+        try {
+          const response = await fetch('api/get_properties_by_category.php?category=resale');
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const properties = await response.json();
+          displayProperties(properties);
+        } catch (error) {
+          console.error('Error fetching resale properties:', error);
+          propertiesGrid.innerHTML = '<p style="color: red; text-align: center; grid-column: 1 / -1;">Could not load properties at this time.</p>';
+        }
+      }
+
+      function displayProperties(properties) {
+        propertiesGrid.innerHTML = ''; // Clear loading message
+
+        if (!properties || properties.length === 0) {
+          propertiesGrid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1;">No resale properties found.</p>';
+          return;
+        }
+
+        properties.forEach(property => {
+          const card = document.createElement('div');
+          card.className = 'property-card';
+          card.innerHTML = `
+            <div class="property-image">
+              ${property.tag ? `<div class="property-tag">${property.tag}</div>` : ''}
+              <img src="${property.image}" alt="${property.title}">
+            </div>
+            <div class="property-details">
+              <h3>${property.title}</h3>
+              <p class="property-location"><i class="fas fa-map-marker-alt"></i> ${property.location}</p>
+              <p class="property-price">${property.price}</p>
+              <div class="property-features">
+                <span><i class="fas fa-bed"></i> ${property.beds} Beds</span>
+                <span><i class="fas fa-bath"></i> ${property.baths} Baths</span>
+                <span><i class="fas fa-ruler-combined"></i> ${property.size.toLocaleString()} sq ft</span>
+              </div>
+              <p class="property-description">${property.description}</p>
+              <a href="property-detail.html?category=${property.category}&id=${property.id}" class="view-property">View Property</a> 
+            </div>
+          `;
+          propertiesGrid.appendChild(card);
+        });
+      }
+
+      fetchProperties(); // Initial fetch on page load
+
+      // --- Search Form Handling --- 
+      const searchForm = document.querySelector('.advanced-search-form'); 
+      const resetButton = searchForm?.querySelector('.reset-button');
+      
+      searchForm?.addEventListener('submit', (e) => {
+          e.preventDefault(); 
+          performSearch();
+      });
+
+      resetButton?.addEventListener('click', (e) => {
+         e.preventDefault();
+         searchForm.reset();
+         fetchProperties(); 
+      });
+      
+      async function performSearch() {
+          if (!searchForm) return;
+          propertiesGrid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1;">Searching...</p>';
+          
+          // Gather form data for resale page
+          const location = searchForm.querySelector('select[name="location"]')?.value; // Assuming select name="location"
+          const type = searchForm.querySelector('select[name="propertyType"]')?.value; // Assuming select name="propertyType"
+          const minPrice = searchForm.querySelector('input[placeholder="Min Price"]')?.value;
+          const maxPrice = searchForm.querySelector('input[placeholder="Max Price"]')?.value;
+          const minBeds = searchForm.querySelector('select[name="bedrooms"]')?.value; // Assuming select name="bedrooms"
+          // Resale specific fields (assuming select names)
+          const propertyAge = searchForm.querySelector('select[name="propertyAge"]')?.value;
+          const renovationStatus = searchForm.querySelector('select[name="renovationStatus"]')?.value;
+          
+          // Construct query string
+          const queryParams = new URLSearchParams();
+          queryParams.append('category', 'resale'); // Hardcode category
+          if (location) queryParams.append('location', location);
+          if (type) queryParams.append('type', type);
+          if (minPrice) queryParams.append('minPrice', minPrice);
+          if (maxPrice) queryParams.append('maxPrice', maxPrice);
+          if (minBeds) queryParams.append('minBeds', minBeds);
+          if (propertyAge) queryParams.append('propertyAge', propertyAge); // Add resale specific
+          if (renovationStatus) queryParams.append('renovationStatus', renovationStatus); // Add resale specific
+          
+          try {
+              const response = await fetch(`api/property_search.php?${queryParams.toString()}`);
+              if (!response.ok) {
+                  throw new Error(`HTTP error! status: ${response.status}`);
+              }
+              const properties = await response.json();
+              displayProperties(properties); // Reuse the display function
+          } catch (error) {
+              console.error('Error performing search:', error);
+              propertiesGrid.innerHTML = '<p style="color: red; text-align: center; grid-column: 1 / -1;">Search failed.</p>';
+          }
+      }
+    });
+  </script>
+</body>
+</html>

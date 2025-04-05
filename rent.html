@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rental Properties | NEWMARK</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Using Google Fonts for a modern look -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <img src="images/Logo.png" alt="NEWMARK" class="logo-img">
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="primary.html">Primary</a></li>
+          <li><a href="resale.html">Resale</a></li>
+          <li><a href="rent.html">Rent</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" style="background: url('images/New Mark-Brand Direction (2)_page-0013.jpg') no-repeat center center/cover;">
+    <div class="hero-content">
+      <div class="investment-text">LUXURY RENTALS</div>
+      <div class="brand-statement">
+        <p>EXCEPTIONAL LIVING WITHOUT THE COMMITMENT</p>
+        <p>PREMIUM PROPERTIES AVAILABLE FOR IMMEDIATE OCCUPANCY</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rental Filters Section -->
+  <section class="search-section">
+    <div class="container">
+      <h2>Find Your Perfect Rental</h2>
+      <div class="search-container">
+        <form class="advanced-search-form">
+          <div class="search-row">
+            <div class="search-group">
+              <label>Location</label>
+              <select>
+                <option value="">Select Location</option>
+                <option value="downtown">Downtown</option>
+                <option value="suburbs">Suburbs</option>
+                <option value="new-cairo">New Cairo</option>
+                <option value="october">6th of October</option>
+                <option value="shoreline">North Coast</option>
+              </select>
+            </div>
+            <div class="search-group">
+              <label>Property Type</label>
+              <select>
+                <option value="">All Types</option>
+                <option value="apartment">Apartment</option>
+                <option value="villa">Villa</option>
+                <option value="duplex">Duplex</option>
+                <option value="chalet">Chalet</option>
+                <option value="penthouse">Penthouse</option>
+              </select>
+            </div>
+            <div class="search-group">
+              <label>Monthly Rent Range</label>
+              <div class="price-inputs">
+                <input type="number" placeholder="Min Rent">
+                <span>to</span>
+                <input type="number" placeholder="Max Rent">
+              </div>
+            </div>
+          </div>
+
+          <div class="search-row">
+            <div class="search-group">
+              <label>Bedrooms</label>
+              <select>
+                <option value="">Any</option>
+                <option value="1">1+</option>
+                <option value="2">2+</option>
+                <option value="3">3+</option>
+                <option value="4">4+</option>
+                <option value="5">5+</option>
+              </select>
+            </div>
+            <div class="search-group">
+              <label>Lease Term</label>
+              <select>
+                <option value="">Any</option>
+                <option value="short">Short-term (1-3 months)</option>
+                <option value="medium">Medium-term (3-6 months)</option>
+                <option value="long">Long-term (6+ months)</option>
+                <option value="flexible">Flexible</option>
+              </select>
+            </div>
+            <div class="search-group">
+              <label>Availability</label>
+              <select>
+                <option value="">Any</option>
+                <option value="immediate">Immediate</option>
+                <option value="next-month">Next Month</option>
+                <option value="future">Future Date</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="search-row">
+            <div class="search-group amenities">
+              <label>Amenities</label>
+              <div class="amenities-grid">
+                <label class="checkbox-label">
+                  <input type="checkbox"> Furnished
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox"> Pool/Gym Access
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox"> Utilities Included
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox"> Parking
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox"> Pets Allowed
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox"> Security
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox"> Balcony/Terrace
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox"> Serviced
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox"> Private Garden
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="search-actions">
+            <button type="submit" class="search-button">Search Rental Properties</button>
+            <button type="reset" class="reset-button">Reset Filters</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Rental Properties -->
+  <section class="featured-properties">
+    <div class="container">
+      <h2>Featured Rental Properties</h2>
+      <div class="properties-grid" id="rentPropertiesGrid">
+        <!-- Properties will be loaded here dynamically -->
+        <p style="text-align: center; grid-column: 1 / -1;">Loading properties...</p>
+      </div>
+
+      <div class="view-more-container">
+        <a href="#" class="view-more-button">View More Rental Properties</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rental Benefits Section -->
+  <section class="rental-benefits">
+    <div class="container">
+      <h2>Why Rent With NEWMARK</h2>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i class="fas fa-file-signature"></i>
+          </div>
+          <h3>Flexible Terms</h3>
+          <p>Enjoy tailored lease agreements designed to suit your unique needs, whether you're looking for short-term or long-term accommodation.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3>Secure Transactions</h3>
+          <p>Experience worry-free renting with our transparent process, secure payment systems, and professional property management.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <h3>Maintenance Support</h3>
+          <p>Rest easy knowing that all our rental properties include responsive maintenance services and dedicated property managers.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i class="fas fa-hand-holding-heart"></i>
+          </div>
+          <h3>Premium Selection</h3>
+          <p>Access Egypt's finest rental properties, carefully curated and vetted to meet our high standards for quality and luxury.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <div class="container">
+      <h2>What Our Rental Clients Say</h2>
+      <div class="testimonial-slider">
+        <div class="testimonial">
+          <div class="testimonial-content">
+            <p>"As an executive on a two-year assignment in Cairo, NEWMARK found me the perfect luxury rental that felt like home from day one. Their ongoing support made my stay in Egypt truly enjoyable."</p>
+          </div>
+          <div class="testimonial-author">
+            <div class="author-image">
+              <img src="https://placehold.co/100x100/000000/FFFFFF.png?text=Client" alt="Client">
+            </div>
+            <div class="author-details">
+              <h4>Michael R.</h4>
+              <p>International Executive</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 NEWMARK. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const propertiesGrid = document.getElementById('rentPropertiesGrid');
+
+      async function fetchProperties() {
+        try {
+          const response = await fetch('api/get_properties_by_category.php?category=rent');
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const properties = await response.json();
+          displayProperties(properties);
+        } catch (error) {
+          console.error('Error fetching rental properties:', error);
+          propertiesGrid.innerHTML = '<p style="color: red; text-align: center; grid-column: 1 / -1;">Could not load properties at this time.</p>';
+        }
+      }
+
+      function displayProperties(properties) {
+        propertiesGrid.innerHTML = ''; // Clear loading message
+
+        if (!properties || properties.length === 0) {
+          propertiesGrid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1;">No rental properties found.</p>';
+          return;
+        }
+
+        properties.forEach(property => {
+          const card = document.createElement('div');
+          card.className = 'property-card';
+          card.innerHTML = `
+            <div class="property-image">
+              ${property.tag ? `<div class="property-tag">${property.tag}</div>` : ''}
+              <img src="${property.image}" alt="${property.title}">
+            </div>
+            <div class="property-details">
+              <h3>${property.title}</h3>
+              <p class="property-location"><i class="fas fa-map-marker-alt"></i> ${property.location}</p>
+              <p class="property-price">${property.price}</p> 
+              <div class="property-features">
+                <span><i class="fas fa-bed"></i> ${property.beds} Beds</span>
+                <span><i class="fas fa-bath"></i> ${property.baths} Baths</span>
+                <span><i class="fas fa-ruler-combined"></i> ${property.size.toLocaleString()} sq ft</span>
+              </div>
+              <p class="property-description">${property.description}</p>
+              <a href="property-detail.html?category=${property.category}&id=${property.id}" class="view-property">View Property</a> 
+            </div>
+          `;
+          propertiesGrid.appendChild(card);
+        });
+      }
+
+      fetchProperties(); // Initial fetch on page load
+
+      // --- Search Form Handling --- 
+      const searchForm = document.querySelector('.advanced-search-form'); 
+      const resetButton = searchForm?.querySelector('.reset-button');
+      
+      searchForm?.addEventListener('submit', (e) => {
+          e.preventDefault(); 
+          performSearch();
+      });
+
+      resetButton?.addEventListener('click', (e) => {
+         e.preventDefault();
+         searchForm.reset();
+         fetchProperties(); 
+      });
+      
+      async function performSearch() {
+          if (!searchForm) return;
+          propertiesGrid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1;">Searching...</p>';
+          
+          // Gather form data for rent page
+          const location = searchForm.querySelector('select[name="location"]')?.value; // Assuming select name="location"
+          const type = searchForm.querySelector('select[name="propertyType"]')?.value; // Assuming select name="propertyType"
+          const minRent = searchForm.querySelector('input[placeholder="Min Rent"]')?.value;
+          const maxRent = searchForm.querySelector('input[placeholder="Max Rent"]')?.value;
+          const minBeds = searchForm.querySelector('select[name="bedrooms"]')?.value; // Assuming select name="bedrooms"
+          const leaseTerm = searchForm.querySelector('select[name="leaseTerm"]')?.value; // Assuming select name="leaseTerm"
+          // Consider adding amenity checkboxes here (e.g., furnished, petsAllowed)
+          const furnished = searchForm.querySelector('input[name="furnished"]:checked')?.value; // Example for checkbox
+          
+          // Construct query string
+          const queryParams = new URLSearchParams();
+          queryParams.append('category', 'rent'); // Hardcode category
+          if (location) queryParams.append('location', location);
+          if (type) queryParams.append('type', type);
+          if (minRent) queryParams.append('minPrice', minRent); // Use minPrice/maxPrice for consistency in backend
+          if (maxRent) queryParams.append('maxPrice', maxRent);
+          if (minBeds) queryParams.append('minBeds', minBeds);
+          if (leaseTerm) queryParams.append('leaseTerm', leaseTerm);
+          if (furnished) queryParams.append('furnished', 'true'); // Example amenity
+          
+          try {
+              const response = await fetch(`api/property_search.php?${queryParams.toString()}`);
+              if (!response.ok) {
+                  throw new Error(`HTTP error! status: ${response.status}`);
+              }
+              const properties = await response.json();
+              displayProperties(properties); // Reuse the display function
+          } catch (error) {
+              console.error('Error performing search:', error);
+              propertiesGrid.innerHTML = '<p style="color: red; text-align: center; grid-column: 1 / -1;">Search failed.</p>';
+          }
+      }
+    });
+  </script>
+</body>
+</html>
